@@ -167,6 +167,7 @@ export default class SourceSelector extends Component {
           handleChange={this.handleChange}
           helperText={this.state.helperText}
           vsActions={this.props.vsActions}
+          lsActions={this.props.lsActions}
           datasourceActions={this.props.datasourceActions}
           networkActions={this.props.networkActions}
           networkDownload={this.props.networkDownload}

@@ -6,7 +6,11 @@ import * as commandActions from '../../actions/commands'
 import * as eventActions from '../../actions/cyjs'
 import * as uiStateActions from '../../actions/ui-state'
 import * as vsActions from '../../reducers/visualstyles'
+import * as lsActions from '../../reducers/layoutstyles'
+
 import * as currentVsActions from '../../reducers/currentvs'
+import * as currentLsActions from '../../reducers/currentls'
+
 import * as backgroundColorActions from '../../actions/background-color'
 
 import NetworkViewer from '../../components/NetworkViewer'
@@ -39,6 +43,8 @@ const muiTheme = getMuiTheme({
 class NetworkView extends Component {
 
   render() {
+    // console.log('CONTAINERNETWORKVIEW visualStyles: ', this.props.styles)
+    // console.log('CONTAINERNETWORKVIEW layoutStyles: ', this.props.layouts)
     const networkId = this.props.params.uri
 
     return (
@@ -62,7 +68,9 @@ function mapStateToProps(state) {
     events: state.app_manager.cy_events,
     uiState: state.app_manager.ui_state,
     styles: state.visual_styles,
+    layouts: state.layout_styles,
     currentVs: state.app_manager.current_vs,
+    currentLs: state.app_manager.current_ls,
     backgroundColor: state.app_manager.background_color,
     datasource: state.app_manager.datasource,
   }
@@ -78,6 +86,8 @@ function mapDispatchToProps(dispatch) {
     uiStateActions: bindActionCreators(uiStateActions, dispatch),
     vsActions: bindActionCreators(vsActions, dispatch),
     currentVsActions: bindActionCreators(currentVsActions, dispatch),
+    lsActions: bindActionCreators(lsActions, dispatch),
+    currentLsActions: bindActionCreators(currentLsActions, dispatch),
     backgroundColorActions: bindActionCreators(backgroundColorActions, dispatch),
   }
 }

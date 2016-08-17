@@ -31,8 +31,8 @@ export default class NetworkPanel extends Component {
   render() {
     const {
       commands, commandActions, events, networkDownload,
-      eventActions, networkId, styles, currentVs,
-      backgroundColor, vsActions, currentVsActions
+      eventActions, networkId, styles, layouts, currentVs,
+      backgroundColor, vsActions, currentVsActions, currentLs, currentLsActions
     } = this.props
 
     let errorMsg = networkDownload.get('error')
@@ -79,8 +79,11 @@ export default class NetworkPanel extends Component {
           eventActions={eventActions}
           networkData={network}
           styles={styles}
+          layouts={layouts}
           currentVs={currentVs}
           currentVsActions={currentVsActions}
+          currentLs={currentLs}
+          currentLsActions={currentLsActions}
           backgroundColor={backgroundColor}
           vsActions={vsActions}
         />

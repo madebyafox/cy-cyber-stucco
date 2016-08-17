@@ -14,6 +14,8 @@ import HelpIcon from 'material-ui/svg-icons/action/help-outline';
 import Toggle from 'material-ui/Toggle';
 
 import StyleSelector from '../StyleSelector'
+import LayoutSelector from '../LayoutSelector'
+
 import ColorPicker from '../ColorPicker'
 
 import style from './style.css'
@@ -87,9 +89,9 @@ export default class MainMenu extends Component {
     const showAppBar = uiState.get('showAppBar')
     const showCommands = uiState.get('showCommands')
     const styles = this.props.styles
+    const layouts = this.props.layouts
     const {currentVsActions, backgroundColorActions,
-      backgroundColor, currentVs} = this.props
-
+      backgroundColor, currentVs, currentLs, currentLsActions} = this.props
     return (
       <div>
         <div className={classnames(style.grid, style.top)}>
@@ -125,21 +127,25 @@ export default class MainMenu extends Component {
             initiallyOpen={true}
             primaryTogglesNestedList={true}
             nestedItems={[
-
               <ColorPicker
                 key={1}
                 backgroundColor={backgroundColor}
                 backgroundColorActions={backgroundColorActions}
               />,
-              <ListItem
-                key={2}
-              >
+              <ListItem key={2}>
                 <StyleSelector
                   styles={styles}
                   currentVs={currentVs}
                   currentVsActions={currentVsActions}
                 />
-              </ListItem>
+            </ListItem>,
+            <ListItem key={3}>
+              <LayoutSelector
+                layouts={layouts}
+                currentLs={currentLs}
+                currentLsActions={currentLsActions}
+                />
+            </ListItem>
             ]}
           />
         </List>
@@ -198,3 +204,11 @@ export default class MainMenu extends Component {
     )
   }
 }
+
+// ,
+// <ListItem key={3}>
+//   <LayoutSelector
+//     currentLs={currentLs}
+//     currentLsActions={currentLsActions}
+//   />
+// </ListItem>

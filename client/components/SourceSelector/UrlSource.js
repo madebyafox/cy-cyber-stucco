@@ -12,6 +12,7 @@ import JSZipUtils from '../../lib/jszip-utils.min'
 const NDEX_URL = 'http://ci-dev-serv.ucsd.edu:3001/ndex2cyjs/'
 
 const PRESET_STYLES_LOCATION = '../../assets/preset-styles.json'
+const PRESET_LAYOUTS_LOCATION = '../../assets/preset-layouts.json'
 
 export default class UrlSource extends Component {
 
@@ -48,8 +49,15 @@ export default class UrlSource extends Component {
       console.log('---------- No need to load style -------------')
       styleUrl = PRESET_STYLES_LOCATION
     } else {
+      console.log('fetching visual styles')
       this.props.vsActions.fetchVisualStyles(styleUrl)
     }
+
+    console.log('---------- Loading layout -------------')
+    let layoutUrl = PRESET_LAYOUTS_LOCATION
+    console.log(this.props)
+    console.log(layoutUrl)
+    console.log('---------- No need to load style -------------')
 
     this.props.datasourceActions.setNetworkSource(url)
     this.props.datasourceActions.setStyleSource(styleUrl)

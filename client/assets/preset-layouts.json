@@ -1,0 +1,42 @@
+[
+  {
+    "format_version": "1.0",
+    "title": "null",
+    "layout": "null"
+  },
+  {
+    "format_version": "1.0",
+    "title": "random",
+    "layout": "random"
+  },
+  {
+    "format_version": "1.0",
+    "title": "preset",
+    "layout": "preset"
+  },
+  {
+    "format_version": "1.0",
+    "title": "grid",
+    "layout": "grid"
+  },
+  {
+    "format_version": "1.0",
+    "title": "circle",
+    "layout": "circle"
+  },
+  {
+    "format_version": "1.0",
+    "title": "concentric",
+    "layout": "concentric"
+  },
+  {
+    "format_version": "1.0",
+    "title": "breadthfirst",
+    "layout": "breadthfirst"
+  },
+  {
+    "format_version": "1.0",
+    "title": "cose",
+    "layout": "cose"
+  }
+]

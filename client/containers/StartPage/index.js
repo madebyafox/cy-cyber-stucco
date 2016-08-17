@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import * as vsActions from '../../reducers/visualstyles'
+import * as lsActions from '../../reducers/layoutstyles'
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -33,6 +34,8 @@ const muiTheme = getMuiTheme({
 class StartPage extends Component {
 
   render() {
+    // console.log('START visualStyles: ', this.props.styles)
+    // console.log('START layoutStyles: ', this.props.layouts)
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <Start {...this.props} />
@@ -44,6 +47,7 @@ class StartPage extends Component {
 function mapStateToProps(state) {
   return {
     visualStyles: state.visual_styles,
+    layoutStyles: state.layout_styles,
     networkDownload: state.cy_network.networkDownload,
   }
 }
@@ -51,6 +55,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     vsActions: bindActionCreators(vsActions, dispatch),
+    lsActions: bindActionCreators(lsActions, dispatch),
     networkActions: bindActionCreators(networkActions, dispatch),
     datasourceActions: bindActionCreators(datasourceActions, dispatch),
   }

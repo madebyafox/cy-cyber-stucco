@@ -47,9 +47,11 @@ export default class NetworkViewer extends Component {
       downloadActions, networkActions,
       commands, commandActions,
       events, eventActions, networkId, uiState, uiStateActions,
-      styles, currentVs, currentVsActions, backgroundColorActions,
-      backgroundColor, vsActions, datasource
+      styles, layouts, currentVs, currentVsActions, backgroundColorActions,
+      backgroundColor, vsActions, datasource, currentLs, currentLsActions
     } = this.props
+    // console.log('NETWORKVIEWER visualStyles: ', this.props.styles)
+    // console.log('NETWORKVIEWER layoutStyles: ', this.props.layouts)
 
     let errorMsg = networkDownload.get('error')
     if(errorMsg === null || errorMsg === undefined) {
@@ -67,8 +69,11 @@ export default class NetworkViewer extends Component {
           uiState={uiState}
           uiStateActions={uiStateActions}
           styles={styles}
+          layouts={layouts}
           currentVsActions={currentVsActions}
           currentVs={currentVs}
+          currentLsActions={currentLsActions}
+          currentLs={currentLs}
           backgroundColorActions={backgroundColorActions}
           backgroundColor={backgroundColor}
           datasource={datasource}
@@ -85,8 +90,11 @@ export default class NetworkViewer extends Component {
           eventActions={eventActions}
           networkId={networkId}
           styles={styles}
+          layouts={layouts}
           currentVs={currentVs}
           currentVsActions={currentVsActions}
+          currentLs={currentLs}
+          currentLsActions={currentLsActions}
           backgroundColor={backgroundColor}
           vsActions={vsActions}
         />

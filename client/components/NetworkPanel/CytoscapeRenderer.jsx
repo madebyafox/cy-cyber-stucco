@@ -4,7 +4,7 @@ import style from './style.css'
 
 // Original position will be used when layout is positions are available
 const DEF_LAYOUT = 'preset'
-const LAYOUT = 'cose'
+// const LAYOUT = 'cose'
 
 const CY_EVENTS = {
   select: "select",
@@ -13,17 +13,17 @@ const CY_EVENTS = {
   remove: 'remove'
 }
 
-
 export default class CytoscapeRenderer extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
       rendered: false,
-      vs: 'default',
+      vs: 'default'
+      // ,
+      // ls: 'circle'
     }
   }
-
 
   updateCyjs(networkData) {
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Cytoscape.js is rendering new network...')
@@ -37,8 +37,9 @@ export default class CytoscapeRenderer extends React.Component {
     let network = networkData.toJS()
 
     // Case 1: network has Style section
+
     let visualStyle = network.style
-    let layoutFlag = false
+    let layoutFlag = true
 
     if (visualStyle === undefined || visualStyle === null || visualStyle === {}) {
 
@@ -51,19 +52,19 @@ export default class CytoscapeRenderer extends React.Component {
       if(visualStyle === undefined) {
         visualStyle = this.props.styles.get('default')
       }
-    } else {
+    }
+    else {
       // This is a new visual style.  Add it to the manager.
       this.props.vsActions.addStyle('Custom', visualStyle)
       this.props.currentVsActions.setCurrentVs('Custom')
     }
-
 
     const cy = this.state.cyjs
     cy.style(visualStyle)
     cy.add(network.elements.nodes)
     cy.add(network.elements.edges)
     if(layoutFlag) {
-      cy.layout({ name: LAYOUT })
+      cy.layout({ name: DEF_LAYOUT })
     }
     cy.fit()
   }
@@ -75,14 +76,16 @@ export default class CytoscapeRenderer extends React.Component {
         {
           container: document.getElementById(this.props.rendId),
           elements: [],
-          layout: {
-            name: DEF_LAYOUT
+          layout:
+          {
+            name: 'circle'
+            // name: DEF_LAYOUT
           }
         }))
     this.setEventListener(cy)
     this.state.cyjs = cy
+    console.log("component did mount ", this.state.cyjs)
   }
-
 
   shouldComponentUpdate(nextProps, nextState) {
     // React is responsible only for the root Cytoscape tag.
@@ -124,6 +127,8 @@ export default class CytoscapeRenderer extends React.Component {
     }
 
     // Style
+    console.log('curVs: ', this.state.vs)
+    console.log('nextV: ', nextProps.currentVs.get('vsName'))
     const curVs = this.state.vs
     const nextVs = nextProps.currentVs.get('vsName')
     if(curVs !== nextVs) {
@@ -132,10 +137,22 @@ export default class CytoscapeRenderer extends React.Component {
       this.setState({
         vs: nextVs
       })
-
       return;
     }
 
+    // Layout
+    console.log('curLs: ', this.state.ls)
+    console.log('nextL: ', nextProps.currentLs.get('lsName'))
+    const curLs = this.state.ls
+    const nextLs = nextProps.currentLs.get('lsName')
+    if(curLs !== nextLs) {
+      const ls = this.props.layouts.get(nextLs)
+      this.state.cyjs.layout({name:ls})
+      this.setState({
+        ls: nextLs
+      })
+      return;
+    }
 
     if (nextProps === undefined || nextProps.networkData === undefined) {
       console.log("=========== NO DATA");
@@ -155,7 +172,7 @@ export default class CytoscapeRenderer extends React.Component {
 
   render() {
     const bgc = this.props.backgroundColor.get('backgroundColor')
-
+    console.log("RENDERING CYTOSCAPE RENDERER", this.props)
     // Just add a div tag for Cytoscape.js.
     // Cytoscape.js can render result only when this section is available in DOM.
     return (
