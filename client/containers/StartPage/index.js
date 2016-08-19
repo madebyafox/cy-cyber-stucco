@@ -24,7 +24,7 @@ const muiTheme = getMuiTheme({
     alternateTextColor: Colors.white,
     canvasColor: Colors.white,
     borderColor: Colors.grey300,
-    pickerHeaderColor: Colors.cyan500,
+    pickerHeaderColor: Colors.cyan500
   },
   appBar: {
     color: 'rgba(0,0,0,0.0)'

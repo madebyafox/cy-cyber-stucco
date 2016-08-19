@@ -110,8 +110,7 @@ class Entrance extends Component {
 
   render() {
     const {currentNetwork, networkSourceActions, datasourceActions, datasource} = this.props
-    // console.log('ENTRANCE visualStyles: ', this.props.styles)
-    // console.log('ENTRANCE layoutStyles: ', this.props.layouts)
+  
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <TopPage
